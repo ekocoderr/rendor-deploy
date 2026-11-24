@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Crypto.com — Buy, Sell & Pay With Crypto</title>
+<meta name="description" content="Crypto.com is the world's leading cryptocurrency platform. Buy, sell, and trade 350+ crypto assets with industry-leading security, low fees, and 24/7 support."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://crypto-usa.org/home.html"/>
+<meta property="og:title" content="Crypto.com — Buy, Sell & Pay With Crypto"/>
+<meta property="og:description" content="Trade 350+ cryptocurrencies with industry-leading security and low fees. Join 100 million users worldwide."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://crypto-usa.org/home.html"/>
+<link rel="icon" href="/favicon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#060d1a;--card:#0d1b2e;--border:#1a2d45;
+  --blue:#1a56db;--blue2:#1649c0;--text:#e8edf5;--muted:#7a8fa8;
+  --radius:12px;
+}
+html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;display:flex;align-items:center;padding:0 40px;background:rgba(6,13,26,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center;gap:8px;text-decoration:none;margin-right:40px}
+.nav-logo img{height:26px;width:26px}
+.nav-logo span{font-size:16px;font-weight:700;color:#fff;font-family:'Sora',sans-serif}
+.nav-links{display:flex;gap:4px;flex:1}
+.nav-links a{font-size:13.5px;font-weight:500;color:var(--muted);text-decoration:none;padding:6px 12px;border-radius:6px;transition:color .15s,background .15s}
+.nav-links a:hover{color:var(--text);background:#0d1b2e}
+.nav-links a.active{color:var(--text)}
+.nav-cta{display:flex;gap:8px;align-items:center}
+.btn-nav-login{font-size:13px;font-weight:600;color:var(--text);text-decoration:none;padding:7px 16px;border-radius:7px;border:1px solid var(--border);transition:border-color .15s}
+.btn-nav-login:hover{border-color:var(--blue)}
+.btn-nav-get{font-size:13px;font-weight:600;color:#fff;text-decoration:none;padding:7px 16px;border-radius:7px;background:var(--blue);transition:background .15s}
+.btn-nav-get:hover{background:var(--blue2)}
+
+/* HERO */
+.hero{padding:140px 40px 100px;max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:60px}
+.hero-text{flex:1}
+.hero-eyebrow{font-size:12px;font-weight:600;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px}
+.hero-h1{font-size:52px;font-weight:800;line-height:1.08;letter-spacing:-.03em;margin-bottom:20px;font-family:'Sora',sans-serif}
+.hero-h1 span{color:var(--blue)}
+.hero-sub{font-size:17px;color:var(--muted);line-height:1.6;max-width:480px;margin-bottom:32px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary-lg{font-size:14px;font-weight:600;color:#fff;text-decoration:none;padding:13px 28px;border-radius:9px;background:var(--blue);transition:background .15s;display:inline-flex;align-items:center;gap:8px}
+.btn-primary-lg:hover{background:var(--blue2)}
+.btn-ghost-lg{font-size:14px;font-weight:600;color:var(--text);text-decoration:none;padding:13px 28px;border-radius:9px;border:1px solid var(--border);transition:border-color .15s,color .15s}
+.btn-ghost-lg:hover{border-color:var(--blue);color:#fff}
+.hero-img{width:420px;flex-shrink:0;border-radius:16px;overflow:hidden;border:1px solid var(--border)}
+.hero-img img{width:100%;display:block}
+
+/* STATS */
+.stats{background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:32px 40px}
+.stats-inner{max-width:1100px;margin:0 auto;display:flex;gap:0;justify-content:space-around;flex-wrap:wrap}
+.stat{text-align:center;padding:8px 24px}
+.stat-n{font-size:32px;font-weight:800;font-family:'Sora',sans-serif;letter-spacing:-.02em}
+.stat-l{font-size:13px;color:var(--muted);margin-top:4px}
+
+/* FEATURES */
+.features{padding:80px 40px;max-width:1100px;margin:0 auto}
+.section-label{font-size:12px;font-weight:600;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;text-align:center}
+.section-title{font-size:36px;font-weight:800;text-align:center;letter-spacing:-.02em;margin-bottom:48px;font-family:'Sora',sans-serif}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.feat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:28px}
+.feat-icon{width:44px;height:44px;border-radius:10px;background:#0d1f35;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.feat-icon svg{width:22px;height:22px;stroke:var(--blue);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.feat-title{font-size:15px;font-weight:700;margin-bottom:8px}
+.feat-body{font-size:13.5px;color:var(--muted);line-height:1.6}
+
+/* COINS */
+.coins-section{padding:60px 40px;max-width:1100px;margin:0 auto}
+.coins-table{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.coins-header{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;padding:12px 20px;border-bottom:1px solid var(--border);font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+.coin-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;padding:14px 20px;border-bottom:1px solid #0d1b2e;align-items:center;transition:background .12s;cursor:pointer}
+.coin-row:last-child{border-bottom:none}
+.coin-row:hover{background:#0a1626}
+.coin-info{display:flex;align-items:center;gap:12px}
+.coin-dot{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0}
+.coin-name{font-size:14px;font-weight:600}
+.coin-sym{font-size:12px;color:var(--muted)}
+.coin-price{font-size:14px;font-weight:600}
+.coin-chg{font-size:13px;font-weight:600}
+.up{color:#22c55e}.dn{color:#ef4444}
+.coin-mkt{font-size:13px;color:var(--muted)}
+
+/* CTA BAND */
+.cta-band{background:linear-gradient(135deg,#0d1f35 0%,#0a1420 100%);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:60px 40px;text-align:center}
+.cta-band h2{font-size:34px;font-weight:800;font-family:'Sora',sans-serif;letter-spacing:-.02em;margin-bottom:12px}
+.cta-band p{font-size:15px;color:var(--muted);margin-bottom:28px}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:40px;background:var(--bg)}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-brand .nav-logo{margin-bottom:12px;display:inline-flex}
+.footer-brand p{font-size:13px;color:var(--muted);line-height:1.6;max-width:220px}
+.footer-col h4{font-size:12px;font-weight:700;color:var(--text);letter-spacing:.05em;text-transform:uppercase;margin-bottom:12px}
+.footer-col a{display:block;font-size:13px;color:var(--muted);text-decoration:none;margin-bottom:8px;transition:color .15s}
+.footer-col a:hover{color:var(--text)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);padding-top:20px;flex-wrap:wrap;gap:10px}
+.footer-bottom span{font-size:12px;color:#3a556e}
+
+@media(max-width:900px){
+  .hero{flex-direction:column;padding:100px 20px 60px}
+  .hero-img{width:100%}
+  .hero-h1{font-size:36px}
+  .features-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+  nav{padding:0 20px}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/home.html">
+    <img src="/favicon.png" alt=""/>
+    <span>crypto.com</span>
+  </a>
+  <div class="nav-links">
+    <a href="/home.html" class="active">Home</a>
+    <a href="/features.html">Products</a>
+    <a href="/about.html">About</a>
+    <a href="/contact.html">Contact</a>
+  </div>
+  <div class="nav-cta">
+    <a class="btn-nav-login" href="/index.html">Log In</a>
+    <a class="btn-nav-get" href="/index.html">Get Started</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">The World's Leading Crypto Platform</div>
+    <h1 class="hero-h1">Buy, Sell &amp; Pay<br/>with <span>Crypto</span></h1>
+    <p class="hero-sub">Trade 350+ cryptocurrencies with industry-leading security, low fees, and 24/7 customer support. Join 100 million users worldwide.</p>
+    <div class="hero-btns">
+      <a class="btn-primary-lg" href="/index.html">Create Account</a>
+      <a class="btn-ghost-lg" href="/features.html">Explore Products</a>
+    </div>
+  </div>
+  <div class="hero-img">
+    <img src="/hero.png" alt="Crypto.com App"/>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stat"><div class="stat-n">100M+</div><div class="stat-l">Users Worldwide</div></div>
+    <div class="stat"><div class="stat-n">350+</div><div class="stat-l">Cryptocurrencies</div></div>
+    <div class="stat"><div class="stat-n">$0.00</div><div class="stat-l">Trading Fees</div></div>
+    <div class="stat"><div class="stat-n">24/7</div><div class="stat-l">Customer Support</div></div>
+    <div class="stat"><div class="stat-n">Top 3</div><div class="stat-l">Exchange by Volume</div></div>
+  </div>
+</div>
+
+<section class="features">
+  <div class="section-label">Everything you need</div>
+  <h2 class="section-title">One Platform. Every Crypto Service.</h2>
+  <div class="features-grid">
+    <div class="feat-card">
+      <div class="feat-icon"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+      <div class="feat-title">Spot &amp; Derivatives Trading</div>
+      <div class="feat-body">Trade 350+ crypto pairs with deep liquidity, tight spreads, and advanced order types including limit, market, and stop orders.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
+      <div class="feat-title">Crypto Visa Card</div>
+      <div class="feat-body">Spend crypto anywhere Visa is accepted. Earn up to 5% back in CRO rewards on every purchase, worldwide with no annual fees.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+      <div class="feat-title">DeFi Wallet</div>
+      <div class="feat-body">Your keys, your crypto. Access DeFi protocols, earn yield, and manage NFTs directly from your self-custody wallet.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      <div class="feat-title">Earn Up to 14.5% APY</div>
+      <div class="feat-body">Put your crypto to work. Flexible and fixed-term staking options available for 40+ assets with competitive rates.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="feat-title">Bank-Grade Security</div>
+      <div class="feat-body">ISO 27001 certified. 100% of user crypto held in cold storage. Multi-factor authentication and anti-phishing codes.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+      <div class="feat-title">NFT Marketplace</div>
+      <div class="feat-body">Buy, sell, and discover exclusive NFTs from top artists and brands. Zero gas fees on the Crypto.com Chain.</div>
+    </div>
+  </div>
+</section>
+
+<section class="coins-section">
+  <div class="section-label">Live Markets</div>
+  <h2 class="section-title" style="margin-bottom:24px">Top Cryptocurrencies</h2>
+  <div class="coins-table">
+    <div class="coins-header">
+      <span>Asset</span><span>Price</span><span>24h Change</span><span>Market Cap</span>
+    </div>
+    <div class="coin-row" onclick="location.href='/index.html'">
+      <div class="coin-info"><div class="coin-dot" style="background:#f7931a20;color:#f7931a">₿</div><div><div class="coin-name">Bitcoin</div><div class="coin-sym">BTC</div></div></div>
+      <div class="coin-price">$67,420.18</div>
+      <div class="coin-chg up">+2.41%</div>
+      <div class="coin-mkt">$1.32T</div>
+    </div>
+    <div class="coin-row" onclick="location.href='/index.html'">
+      <div class="coin-info"><div class="coin-dot" style="background:#627eea20;color:#627eea">Ξ</div><div><div class="coin-name">Ethereum</div><div class="coin-sym">ETH</div></div></div>
+      <div class="coin-price">$3,541.77</div>
+      <div class="coin-chg up">+1.88%</div>
+      <div class="coin-mkt">$425.6B</div>
+    </div>
+    <div class="coin-row" onclick="location.href='/index.html'">
+      <div class="coin-info"><div class="coin-dot" style="background:#26a17b20;color:#26a17b">₮</div><div><div class="coin-name">Tether</div><div class="coin-sym">USDT</div></div></div>
+      <div class="coin-price">$1.00</div>
+      <div class="coin-chg up">+0.01%</div>
+      <div class="coin-mkt">$120.1B</div>
+    </div>
+    <div class="coin-row" onclick="location.href='/index.html'">
+      <div class="coin-info"><div class="coin-dot" style="background:#e84142">S</div><div><div class="coin-name">Solana</div><div class="coin-sym">SOL</div></div></div>
+      <div class="coin-price">$188.33</div>
+      <div class="coin-chg dn">-0.74%</div>
+      <div class="coin-mkt">$87.2B</div>
+    </div>
+    <div class="coin-row" onclick="location.href='/index.html'">
+      <div class="coin-info"><div class="coin-dot" style="background:#1a56db20;color:#1a56db">C</div><div><div class="coin-name">CRO</div><div class="coin-sym">CRO</div></div></div>
+      <div class="coin-price">$0.1241</div>
+      <div class="coin-chg up">+3.12%</div>
+      <div class="coin-mkt">$3.3B</div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <h2>Start Trading in Minutes</h2>
+  <p>Join 100 million people who trust Crypto.com for all their crypto needs.</p>
+  <a class="btn-primary-lg" href="/index.html">Create Free Account</a>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="nav-logo" href="/home.html"><img src="/favicon.png" alt=""/><span style="font-size:15px;font-weight:700;color:#fff;font-family:'Sora',sans-serif">crypto.com</span></a>
+        <p>The world's leading cryptocurrency platform. Buy, sell, and manage your crypto portfolio with confidence.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <a href="/features.html">Exchange</a>
+        <a href="/features.html">DeFi Wallet</a>
+        <a href="/features.html">Crypto Card</a>
+        <a href="/features.html">Earn</a>
+        <a href="/features.html">NFT</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/about.html">About Us</a>
+        <a href="/about.html">Careers</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/about.html">Press</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="/terms.html">Terms of Service</a>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/privacy.html">Cookie Policy</a>
+        <a href="/terms.html">Risk Disclosure</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Cryptocurrency in Every Wallet™ · Copyright © 2018–2026 Crypto.com. All rights reserved.</span>
+      <span>Regulated · Secure · Trusted</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

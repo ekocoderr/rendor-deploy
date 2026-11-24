@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Products & Features — Crypto.com</title>
+<link rel="icon" href="/favicon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#060d1a;--card:#0d1b2e;--border:#1a2d45;--blue:#1a56db;--blue2:#1649c0;--text:#e8edf5;--muted:#7a8fa8;--radius:12px}
+html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;display:flex;align-items:center;padding:0 40px;background:rgba(6,13,26,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center;gap:8px;text-decoration:none;margin-right:40px}
+.nav-logo img{height:26px;width:26px}
+.nav-logo span{font-size:16px;font-weight:700;color:#fff;font-family:'Sora',sans-serif}
+.nav-links{display:flex;gap:4px;flex:1}
+.nav-links a{font-size:13.5px;font-weight:500;color:var(--muted);text-decoration:none;padding:6px 12px;border-radius:6px;transition:color .15s,background .15s}
+.nav-links a:hover{color:var(--text);background:#0d1b2e}
+.nav-links a.active{color:var(--text)}
+.nav-cta{display:flex;gap:8px}
+.btn-nav-login{font-size:13px;font-weight:600;color:var(--text);text-decoration:none;padding:7px 16px;border-radius:7px;border:1px solid var(--border);transition:border-color .15s}
+.btn-nav-login:hover{border-color:var(--blue)}
+.btn-nav-get{font-size:13px;font-weight:600;color:#fff;text-decoration:none;padding:7px 16px;border-radius:7px;background:var(--blue);transition:background .15s}
+.btn-nav-get:hover{background:var(--blue2)}
+.page-header{padding:120px 40px 60px;text-align:center;max-width:700px;margin:0 auto}
+.eyebrow{font-size:12px;font-weight:600;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
+.page-header h1{font-size:46px;font-weight:800;letter-spacing:-.03em;font-family:'Sora',sans-serif;margin-bottom:16px}
+.page-header p{font-size:16px;color:var(--muted);line-height:1.6}
+.section{padding:60px 40px;max-width:1100px;margin:0 auto}
+.product-block{display:flex;align-items:center;gap:60px;margin-bottom:80px}
+.product-block.rev{flex-direction:row-reverse}
+.product-text{flex:1}
+.product-badge{display:inline-block;font-size:11px;font-weight:700;color:var(--blue);letter-spacing:.08em;text-transform:uppercase;background:#0d1f35;border:1px solid var(--border);padding:4px 10px;border-radius:20px;margin-bottom:14px}
+.product-text h2{font-size:30px;font-weight:800;letter-spacing:-.02em;font-family:'Sora',sans-serif;margin-bottom:12px}
+.product-text p{font-size:14.5px;color:var(--muted);line-height:1.65;margin-bottom:20px}
+.feature-list{list-style:none;display:flex;flex-direction:column;gap:9px}
+.feature-list li{font-size:13.5px;color:var(--muted);display:flex;align-items:center;gap:10px}
+.feature-list li::before{content:'';width:16px;height:16px;border-radius:50%;background:#0d1f35;border:1px solid var(--blue);flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.feature-list li span{color:var(--text)}
+.product-visual{flex:1;background:var(--card);border:1px solid var(--border);border-radius:16px;min-height:280px;display:flex;align-items:center;justify-content:center;padding:30px}
+.product-visual img{width:100%;border-radius:10px;display:block}
+.mock-screen{width:100%;background:#070f1e;border-radius:10px;padding:20px;font-size:12px}
+.mock-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);color:var(--muted)}
+.mock-row:last-child{border-bottom:none}
+.mock-row strong{color:var(--text)}
+.mock-row .up{color:#22c55e}.mock-row .dn{color:#ef4444}
+.plans-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:40px}
+.plan-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;position:relative}
+.plan-card.featured{border-color:var(--blue)}
+.plan-badge{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap}
+.plan-tier{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.plan-stake{font-size:11px;color:var(--muted);margin-bottom:12px}
+.plan-cro{font-size:20px;font-weight:800;font-family:'Sora',sans-serif;color:var(--text);margin-bottom:4px}
+.plan-cashback{font-size:13px;color:#22c55e;font-weight:600;margin-bottom:12px}
+.plan-perk{font-size:11.5px;color:var(--muted);line-height:1.6}
+.section-divider{border:none;border-top:1px solid var(--border);margin:0 40px}
+.cta-band{background:linear-gradient(135deg,#0d1f35 0%,#0a1420 100%);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:60px 40px;text-align:center}
+.cta-band h2{font-size:34px;font-weight:800;font-family:'Sora',sans-serif;letter-spacing:-.02em;margin-bottom:12px}
+.cta-band p{font-size:15px;color:var(--muted);margin-bottom:28px}
+.btn-primary-lg{font-size:14px;font-weight:600;color:#fff;text-decoration:none;padding:13px 28px;border-radius:9px;background:var(--blue);transition:background .15s;display:inline-flex;align-items:center;gap:8px}
+.btn-primary-lg:hover{background:var(--blue2)}
+footer{border-top:1px solid var(--border);padding:40px;background:var(--bg)}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-brand p{font-size:13px;color:var(--muted);line-height:1.6;max-width:220px;margin-top:10px}
+.footer-col h4{font-size:12px;font-weight:700;color:var(--text);letter-spacing:.05em;text-transform:uppercase;margin-bottom:12px}
+.footer-col a{display:block;font-size:13px;color:var(--muted);text-decoration:none;margin-bottom:8px;transition:color .15s}
+.footer-col a:hover{color:var(--text)}
+.footer-bottom{display:flex;justify-content:space-between;border-top:1px solid var(--border);padding-top:20px;flex-wrap:wrap;gap:10px}
+.footer-bottom span{font-size:12px;color:#3a556e}
+@media(max-width:900px){.product-block,.product-block.rev{flex-direction:column}.plans-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}nav{padding:0 20px}.page-header{padding:100px 20px 40px}.section{padding:40px 20px}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="/home.html"><img src="/favicon.png" alt=""/><span>crypto.com</span></a>
+  <div class="nav-links">
+    <a href="/home.html">Home</a>
+    <a href="/features.html" class="active">Products</a>
+    <a href="/about.html">About</a>
+    <a href="/contact.html">Contact</a>
+  </div>
+  <div class="nav-cta">
+    <a class="btn-nav-login" href="/index.html">Log In</a>
+    <a class="btn-nav-get" href="/index.html">Get Started</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="eyebrow">Products &amp; Features</div>
+  <h1>Everything Crypto.<br/>One Platform.</h1>
+  <p>From your first Bitcoin purchase to DeFi yield farming — Crypto.com has the product suite to match every level of experience.</p>
+</div>
+
+<div class="section">
+
+  <div class="product-block">
+    <div class="product-text">
+      <div class="product-badge">Exchange</div>
+      <h2>Trade 350+ Cryptos with Zero Fees</h2>
+      <p>Our exchange offers one of the deepest liquidity pools in the industry. Spot, margin, and derivatives trading with sub-millisecond execution and institutional-grade matching engines.</p>
+      <ul class="feature-list">
+        <li><span>0% maker fees on select pairs</span></li>
+        <li><span>Up to 100x leverage on perpetuals</span></li>
+        <li><span>Advanced charting via TradingView integration</span></li>
+        <li><span>API access for algorithmic traders</span></li>
+        <li><span>Fiat on-ramps in 90+ countries</span></li>
+      </ul>
+    </div>
+    <div class="product-visual">
+      <div class="mock-screen">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em">BTC / USDT</div>
+        <div style="font-size:28px;font-weight:800;color:#22c55e;font-family:'Sora',sans-serif;margin-bottom:4px">$67,420.18</div>
+        <div style="font-size:12px;color:#22c55e;margin-bottom:16px">▲ +2.41% (24h)</div>
+        <div class="mock-row"><span>High</span><strong>$68,100</strong></div>
+        <div class="mock-row"><span>Low</span><strong>$65,880</strong></div>
+        <div class="mock-row"><span>Volume</span><strong>$42.1B</strong></div>
+        <div class="mock-row"><span>Open Interest</span><strong>$18.3B</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-block rev">
+    <div class="product-text">
+      <div class="product-badge">Crypto Visa Card</div>
+      <h2>Spend Crypto. Earn Crypto.</h2>
+      <p>The Crypto.com Visa Card is accepted at 80 million merchants worldwide. Load any supported crypto, spend in local currency, and earn CRO cashback on every purchase — automatically.</p>
+      <ul class="feature-list">
+        <li><span>Up to 5% cashback in CRO</span></li>
+        <li><span>Free ATM withdrawals up to $1,000/mo</span></li>
+        <li><span>Complimentary airport lounge access (Obsidian)</span></li>
+        <li><span>No annual or foreign transaction fees</span></li>
+        <li><span>Apple Pay &amp; Google Pay supported</span></li>
+      </ul>
+    </div>
+    <div class="product-visual" style="flex-direction:column;gap:12px">
+      <div style="width:100%;background:linear-gradient(135deg,#1a56db,#0d1f35);border-radius:12px;padding:22px;font-family:'Sora',sans-serif">
+        <div style="font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.1em;text-transform:uppercase;margin-bottom:30px">Crypto.com Visa</div>
+        <div style="font-size:14px;color:rgba(255,255,255,.7);letter-spacing:.18em">•••• •••• •••• 4821</div>
+        <div style="display:flex;justify-content:space-between;margin-top:16px">
+          <div><div style="font-size:9px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.06em">Cardholder</div><div style="font-size:12px;color:#fff;font-weight:600;margin-top:2px">JADE TIER</div></div>
+          <div style="font-size:28px;font-weight:800;color:rgba(255,255,255,.9)">VISA</div>
+        </div>
+      </div>
+      <div style="font-size:12px;color:var(--muted);text-align:center">3% cashback · Free Spotify · Free Netflix</div>
+    </div>
+  </div>
+
+  <div class="product-block">
+    <div class="product-text">
+      <div class="product-badge">DeFi Wallet</div>
+      <h2>Your Keys. Your Crypto.</h2>
+      <p>The Crypto.com DeFi Wallet is a non-custodial wallet giving you full control of your private keys and crypto assets. Seamlessly connect to DeFi protocols and earn yield directly from the app.</p>
+      <ul class="feature-list">
+        <li><span>Self-custody — only you hold the keys</span></li>
+        <li><span>Connect to 1,000+ DeFi protocols</span></li>
+        <li><span>NFT storage, transfer, and display</span></li>
+        <li><span>Cross-chain asset bridging</span></li>
+        <li><span>Hardware wallet support (Ledger, Trezor)</span></li>
+      </ul>
+    </div>
+    <div class="product-visual">
+      <div class="mock-screen">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:14px;font-weight:600;text-transform:uppercase;letter-spacing:.06em">Portfolio Balance</div>
+        <div style="font-size:28px;font-weight:800;font-family:'Sora',sans-serif;margin-bottom:16px">$24,881.44</div>
+        <div class="mock-row"><span>ETH</span><strong>8.42 ETH</strong><span class="up">+1.9%</span></div>
+        <div class="mock-row"><span>SOL</span><strong>142 SOL</strong><span class="up">+3.1%</span></div>
+        <div class="mock-row"><span>USDC</span><strong>$4,200</strong><span style="color:var(--muted)">Staked 8.2%</span></div>
+        <div class="mock-row"><span>CRO</span><strong>21,000 CRO</strong><span class="dn">-0.4%</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-block rev">
+    <div class="product-text">
+      <div class="product-badge">Earn</div>
+      <h2>Put Your Crypto to Work</h2>
+      <p>Flexible and fixed-term staking options let you earn industry-leading yields on your idle crypto. No lock-up required for flexible terms — start and stop anytime.</p>
+      <ul class="feature-list">
+        <li><span>Up to 14.5% APY on select assets</span></li>
+        <li><span>40+ supported cryptocurrencies</span></li>
+        <li><span>Flexible terms — no lock-up required</span></li>
+        <li><span>Compound interest automatically applied</span></li>
+        <li><span>Daily interest payout in kind</span></li>
+      </ul>
+    </div>
+    <div class="product-visual">
+      <div class="mock-screen">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:14px;font-weight:600;text-transform:uppercase;letter-spacing:.06em">Earn Rates (Flexible)</div>
+        <div class="mock-row"><span>BTC</span><strong>6.0%</strong><span style="color:#22c55e">APY</span></div>
+        <div class="mock-row"><span>ETH</span><strong>7.0%</strong><span style="color:#22c55e">APY</span></div>
+        <div class="mock-row"><span>USDT</span><strong>10.0%</strong><span style="color:#22c55e">APY</span></div>
+        <div class="mock-row"><span>USDC</span><strong>10.0%</strong><span style="color:#22c55e">APY</span></div>
+        <div class="mock-row"><span>CRO</span><strong>14.5%</strong><span style="color:#22c55e">APY</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<hr class="section-divider"/>
+
+<div class="section">
+  <div class="eyebrow" style="text-align:center;margin-bottom:12px">Visa Card Tiers</div>
+  <h2 style="font-size:30px;font-weight:800;text-align:center;letter-spacing:-.02em;font-family:'Sora',sans-serif;margin-bottom:8px">Pick Your Card</h2>
+  <p style="text-align:center;color:var(--muted);font-size:14px;margin-bottom:0">Stake CRO to unlock higher cashback, perks, and exclusive benefits.</p>
+  <div class="plans-grid">
+    <div class="plan-card">
+      <div class="plan-tier">Midnight Blue</div>
+      <div class="plan-cro">0 CRO</div>
+      <div class="plan-stake">No stake required</div>
+      <div class="plan-cashback">1% Cashback</div>
+      <div class="plan-perk">Free card, no annual fee</div>
+    </div>
+    <div class="plan-card">
+      <div class="plan-tier">Ruby Steel</div>
+      <div class="plan-cro">500 CRO</div>
+      <div class="plan-stake">Stake required</div>
+      <div class="plan-cashback">2% Cashback</div>
+      <div class="plan-perk">Spotify rebate</div>
+    </div>
+    <div class="plan-card featured">
+      <div class="plan-badge">Most Popular</div>
+      <div class="plan-tier">Royal Indigo / Jade</div>
+      <div class="plan-cro">3,000 CRO</div>
+      <div class="plan-stake">Stake required</div>
+      <div class="plan-cashback">3% Cashback</div>
+      <div class="plan-perk">Spotify + Netflix rebates</div>
+    </div>
+    <div class="plan-card">
+      <div class="plan-tier">Icy White / Frosted</div>
+      <div class="plan-cro">30,000 CRO</div>
+      <div class="plan-stake">Stake required</div>
+      <div class="plan-cashback">5% Cashback</div>
+      <div class="plan-perk">LoungeKey + Amazon Prime</div>
+    </div>
+    <div class="plan-card">
+      <div class="plan-tier">Obsidian</div>
+      <div class="plan-cro">500,000 CRO</div>
+      <div class="plan-stake">Stake required</div>
+      <div class="plan-cashback">5% Cashback</div>
+      <div class="plan-perk">All perks + Private jet</div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-band">
+  <h2>Ready to Start?</h2>
+  <p>Create your account in minutes. No KYC needed to get started.</p>
+  <a class="btn-primary-lg" href="/index.html">Open Account</a>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="nav-logo" href="/home.html"><img src="/favicon.png" alt=""/><span style="font-size:15px;font-weight:700;color:#fff;font-family:'Sora',sans-serif">crypto.com</span></a>
+        <p>The world's leading cryptocurrency platform. Buy, sell, and manage your crypto portfolio with confidence.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <a href="/features.html">Exchange</a>
+        <a href="/features.html">DeFi Wallet</a>
+        <a href="/features.html">Crypto Card</a>
+        <a href="/features.html">Earn</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/about.html">About Us</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/terms.html">Terms</a>
+        <a href="/privacy.html">Privacy</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="/terms.html">Terms of Service</a>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/privacy.html">Cookie Policy</a>
+        <a href="/terms.html">Risk Disclosure</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Cryptocurrency in Every Wallet™ · Copyright © 2018–2026 Crypto.com. All rights reserved.</span>
+      <span>Regulated · Secure · Trusted</span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

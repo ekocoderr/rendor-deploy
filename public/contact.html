@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Contact Us — Crypto.com</title>
+<meta name="description" content="Get 24/7 support from Crypto.com. Live chat, help center, email support for account, trading, and card issues. Average response time under 2 hours."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://crypto-usa.org/contact.html"/>
+<meta property="og:title" content="Contact Support — Crypto.com"/>
+<meta property="og:description" content="24/7 live chat, help center, and email support. We're here whenever you need us."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://crypto-usa.org/contact.html"/>
+<link rel="icon" href="/favicon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#060d1a;--card:#0d1b2e;--border:#1a2d45;--blue:#1a56db;--blue2:#1649c0;--text:#e8edf5;--muted:#7a8fa8;--radius:12px}
+html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;display:flex;align-items:center;padding:0 40px;background:rgba(6,13,26,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center;gap:8px;text-decoration:none;margin-right:40px}
+.nav-logo img{height:26px;width:26px}
+.nav-logo span{font-size:16px;font-weight:700;color:#fff;font-family:'Sora',sans-serif}
+.nav-links{display:flex;gap:4px;flex:1}
+.nav-links a{font-size:13.5px;font-weight:500;color:var(--muted);text-decoration:none;padding:6px 12px;border-radius:6px;transition:color .15s,background .15s}
+.nav-links a:hover{color:var(--text);background:#0d1b2e}
+.nav-links a.active{color:var(--text)}
+.nav-cta{display:flex;gap:8px}
+.btn-nav-login{font-size:13px;font-weight:600;color:var(--text);text-decoration:none;padding:7px 16px;border-radius:7px;border:1px solid var(--border);transition:border-color .15s}
+.btn-nav-login:hover{border-color:var(--blue)}
+.btn-nav-get{font-size:13px;font-weight:600;color:#fff;text-decoration:none;padding:7px 16px;border-radius:7px;background:var(--blue);transition:background .15s}
+.btn-nav-get:hover{background:var(--blue2)}
+.page-header{padding:120px 40px 60px;text-align:center;max-width:700px;margin:0 auto}
+.eyebrow{font-size:12px;font-weight:600;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
+.page-header h1{font-size:46px;font-weight:800;letter-spacing:-.03em;font-family:'Sora',sans-serif;margin-bottom:16px}
+.page-header p{font-size:16px;color:var(--muted);line-height:1.6}
+.section{padding:60px 40px;max-width:1100px;margin:0 auto}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.contact-form-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:36px}
+.contact-form-card h2{font-size:22px;font-weight:800;font-family:'Sora',sans-serif;letter-spacing:-.02em;margin-bottom:6px}
+.contact-form-card p{font-size:13.5px;color:var(--muted);margin-bottom:24px;line-height:1.5}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:#070f1e;border:1px solid var(--border);border-radius:8px;padding:11px 14px;font-size:14px;color:var(--text);font-family:'DM Sans',sans-serif;outline:none;transition:border-color .15s}
+.form-group input::placeholder,.form-group textarea::placeholder{color:#3a556e}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--blue)}
+.form-group select{cursor:pointer;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237a8fa8' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px}
+.form-group select option{background:#0d1b2e;color:var(--text)}
+.form-group textarea{resize:vertical;min-height:110px;line-height:1.5}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.btn-submit{width:100%;background:var(--blue);color:#fff;border:none;border-radius:9px;padding:13px;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .15s;margin-top:4px}
+.btn-submit:hover{background:var(--blue2)}
+.contact-side{display:flex;flex-direction:column;gap:16px}
+.contact-channel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;display:flex;gap:16px;align-items:flex-start}
+.channel-icon{width:42px;height:42px;border-radius:10px;background:#0d1f35;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px}
+.channel-title{font-size:14px;font-weight:700;margin-bottom:4px}
+.channel-body{font-size:13px;color:var(--muted);line-height:1.5}
+.channel-link{font-size:13px;color:var(--blue);text-decoration:none;margin-top:6px;display:block;font-weight:500}
+.channel-link:hover{text-decoration:underline}
+.status-banner{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.status-dot{width:10px;height:10px;border-radius:50%;background:#22c55e;flex-shrink:0;box-shadow:0 0 0 3px rgba(34,197,94,.2)}
+.status-text{font-size:13px;color:var(--muted)}<br/>.status-text strong{color:var(--text)}
+.faq-block{margin-top:60px}
+.faq-title{font-size:28px;font-weight:800;font-family:'Sora',sans-serif;letter-spacing:-.02em;margin-bottom:28px;text-align:center}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.faq-item{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px}
+.faq-q{font-size:14px;font-weight:700;margin-bottom:8px}
+.faq-a{font-size:13.5px;color:var(--muted);line-height:1.6}
+.cta-band{background:linear-gradient(135deg,#0d1f35 0%,#0a1420 100%);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:60px 40px;text-align:center}
+.cta-band h2{font-size:34px;font-weight:800;font-family:'Sora',sans-serif;letter-spacing:-.02em;margin-bottom:12px}
+.cta-band p{font-size:15px;color:var(--muted);margin-bottom:28px}
+.btn-primary-lg{font-size:14px;font-weight:600;color:#fff;text-decoration:none;padding:13px 28px;border-radius:9px;background:var(--blue);transition:background .15s;display:inline-flex;align-items:center;gap:8px}
+.btn-primary-lg:hover{background:var(--blue2)}
+footer{border-top:1px solid var(--border);padding:40px;background:var(--bg)}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-brand p{font-size:13px;color:var(--muted);line-height:1.6;max-width:220px;margin-top:10px}
+.footer-col h4{font-size:12px;font-weight:700;color:var(--text);letter-spacing:.05em;text-transform:uppercase;margin-bottom:12px}
+.footer-col a{display:block;font-size:13px;color:var(--muted);text-decoration:none;margin-bottom:8px;transition:color .15s}
+.footer-col a:hover{color:var(--text)}
+.footer-bottom{display:flex;justify-content:space-between;border-top:1px solid var(--border);padding-top:20px;flex-wrap:wrap;gap:10px}
+.footer-bottom span{font-size:12px;color:#3a556e}
+#thankMsg{display:none;text-align:center;padding:30px 0}
+#thankMsg h3{font-size:20px;font-weight:700;margin-bottom:8px;color:#22c55e}
+#thankMsg p{font-size:14px;color:var(--muted)}
+@media(max-width:900px){.contact-grid,.faq-grid,.form-row{grid-template-columns:1fr}.nav-links{display:none}nav{padding:0 20px}.page-header{padding:100px 20px 40px}.section{padding:40px 20px}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="/home.html"><img src="/favicon.png" alt=""/><span>crypto.com</span></a>
+  <div class="nav-links">
+    <a href="/home.html">Home</a>
+    <a href="/features.html">Products</a>
+    <a href="/about.html">About</a>
+    <a href="/contact.html" class="active">Contact</a>
+  </div>
+  <div class="nav-cta">
+    <a class="btn-nav-login" href="/index.html">Log In</a>
+    <a class="btn-nav-get" href="/index.html">Get Started</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="eyebrow">Support &amp; Contact</div>
+  <h1>We're Here<br/>24/7</h1>
+  <p>Our global support team is available around the clock. Send us a message, start a live chat, or browse our help center.</p>
+</div>
+
+<div class="section">
+  <div class="contact-grid">
+    <div>
+      <div class="status-banner">
+        <div class="status-dot"></div>
+        <div class="status-text"><strong>All Systems Operational</strong> — No incidents reported in the last 24 hours.</div>
+      </div>
+      <div class="contact-form-card">
+        <h2>Send a Message</h2>
+        <p>Typical response time: under 2 hours for account issues.</p>
+        <form id="contactForm" onsubmit="submitForm(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" placeholder="John" required/>
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" placeholder="Smith" required/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="john@example.com" required/>
+          </div>
+          <div class="form-group">
+            <label>Topic</label>
+            <select required>
+              <option value="">Select a topic...</option>
+              <option>Account &amp; Verification</option>
+              <option>Deposits &amp; Withdrawals</option>
+              <option>Trading &amp; Orders</option>
+              <option>Crypto Visa Card</option>
+              <option>DeFi Wallet</option>
+              <option>Security Concern</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea placeholder="Describe your issue in detail..."></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Send Message</button>
+        </form>
+        <div id="thankMsg">
+          <h3>✓ Message Received</h3>
+          <p>We'll get back to you within 2 hours at your registered email address.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-side">
+      <div class="contact-channel">
+        <div class="channel-icon">💬</div>
+        <div>
+          <div class="channel-title">Live Chat</div>
+          <div class="channel-body">Instant support for account and trading questions. Available 24/7 in English, Spanish, Portuguese, Mandarin, and 12 more languages.</div>
+          <a class="channel-link" href="/index.html">Start Live Chat →</a>
+        </div>
+      </div>
+      <div class="contact-channel">
+        <div class="channel-icon">📚</div>
+        <div>
+          <div class="channel-title">Help Center</div>
+          <div class="channel-body">Browse 500+ articles covering account setup, trading, deposits, withdrawals, card management, and more. Available in 20+ languages.</div>
+          <a class="channel-link" href="/index.html">Visit Help Center →</a>
+        </div>
+      </div>
+      <div class="contact-channel">
+        <div class="channel-icon">🏢</div>
+        <div>
+          <div class="channel-title">Corporate &amp; Press</div>
+          <div class="channel-body">Media inquiries, partnership proposals, and enterprise solutions. Our business development team responds within one business day.</div>
+          <a class="channel-link" href="mailto:press@crypto.com">press@crypto.com</a>
+        </div>
+      </div>
+      <div class="contact-channel">
+        <div class="channel-icon">⚖️</div>
+        <div>
+          <div class="channel-title">Compliance &amp; Legal</div>
+          <div class="channel-body">Law enforcement requests, legal notices, and regulatory correspondence. Strict SLA with 72-hour acknowledgement guarantee.</div>
+          <a class="channel-link" href="mailto:legal@crypto.com">legal@crypto.com</a>
+        </div>
+      </div>
+      <div class="contact-channel">
+        <div class="channel-icon">🔐</div>
+        <div>
+          <div class="channel-title">Security Disclosures</div>
+          <div class="channel-body">Found a vulnerability? Our responsible disclosure program includes rewards up to $500,000 through our HackerOne bug bounty.</div>
+          <a class="channel-link" href="mailto:security@crypto.com">security@crypto.com</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-block">
+    <div class="faq-title">Frequently Asked Questions</div>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <div class="faq-q">How long does identity verification take?</div>
+        <div class="faq-a">Most verifications are completed within 10 minutes automatically. In rare cases requiring manual review, it may take up to 24 hours during peak periods.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What documents are accepted for KYC?</div>
+        <div class="faq-a">We accept government-issued photo ID (passport, national ID card, or driver's license) plus a proof of address dated within 3 months.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How long do crypto withdrawals take?</div>
+        <div class="faq-a">Crypto withdrawals are processed instantly once security checks pass. Network confirmation time varies — Bitcoin typically takes 10–60 minutes.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is my account insured?</div>
+        <div class="faq-a">Yes. Cold storage assets are covered by a $750M+ insurance policy through Lloyd's of London. We maintain 100% of user funds in cold storage reserves.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What countries are not supported?</div>
+        <div class="faq-a">Due to regulatory requirements, Crypto.com is currently not available in North Korea, Iran, Cuba, and certain US states. Check our full list in the Help Center.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How do I report unauthorized activity?</div>
+        <div class="faq-a">Immediately contact our 24/7 live chat and change your password. Our security team will freeze the account and investigate within one hour of your report.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-band">
+  <h2>Still need help?</h2>
+  <p>Our live chat agents are online right now — average wait time under 2 minutes.</p>
+  <a class="btn-primary-lg" href="/index.html">Open Live Chat</a>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="nav-logo" href="/home.html"><img src="/favicon.png" alt=""/><span style="font-size:15px;font-weight:700;color:#fff;font-family:'Sora',sans-serif">crypto.com</span></a>
+        <p>The world's leading cryptocurrency platform. Buy, sell, and manage your crypto portfolio with confidence.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <a href="/features.html">Exchange</a>
+        <a href="/features.html">DeFi Wallet</a>
+        <a href="/features.html">Crypto Card</a>
+        <a href="/features.html">Earn</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/about.html">About Us</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/terms.html">Terms</a>
+        <a href="/privacy.html">Privacy</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="/terms.html">Terms of Service</a>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/privacy.html">Cookie Policy</a>
+        <a href="/terms.html">Risk Disclosure</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Cryptocurrency in Every Wallet™ · Copyright © 2018–2026 Crypto.com. All rights reserved.</span>
+      <span>Regulated · Secure · Trusted</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+function submitForm(e){
+  e.preventDefault();
+  document.getElementById('contactForm').style.display='none';
+  document.getElementById('thankMsg').style.display='block';
+}
+</script>
+</body>
+</html>
